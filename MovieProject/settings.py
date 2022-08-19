@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'MovieApi',
     # 3rd party api
     'rest_framework',
+    'rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [
@@ -63,6 +64,11 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'MovieProject.wsgi.application'
 
+REST_FRAMEWORK={
+    'DEFAULT_PERMISSION_CLASS':{
+        'rest_framework.permissions.isAuthenticated',
+    }
+}
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
