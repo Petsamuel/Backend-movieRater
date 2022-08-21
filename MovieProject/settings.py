@@ -32,17 +32,24 @@ INSTALLED_APPS = [
     # 3rd party api
     'rest_framework',
     'rest_framework.authtoken',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+CORS_ORIGIN_ALLOW_ALL=True
+# CORS_ORIGIN_WHITELIST = [
+#      "http://localhost:3000",
+#  ]
+
 
 ROOT_URLCONF = 'MovieProject.urls'
 
@@ -64,10 +71,16 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'MovieProject.wsgi.application'
 
-REST_FRAMEWORK={
-    'DEFAULT_PERMISSION_CLASS':{
-        'rest_framework.permissions.isAuthenticated',
-    }
+REST_FRAMEWORK = {
+      'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+
+    ],
+  
 }
 
 # Database
@@ -77,7 +90,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
-        #  env.dj_db_url("DATABASE_URL")
+        #  env.dj_db_url(" ")
 
     }
 }
