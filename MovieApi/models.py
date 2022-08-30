@@ -22,7 +22,7 @@ class Movie(models.Model):
             return 0
     
     def __str__(self):
-        return self.title    
+        return self.title
 
 class Rating(models.Model):
     movies = models.ForeignKey(Movie, on_delete=models.CASCADE)
